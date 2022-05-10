@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration, PairingDeviceConfiguration {
+public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration {
     var endpoint:String = "XXXX";
     public var remoteApplicationID:String = "";
     public var posName:String = "";
     public var posSerialNumber:String = "";
     public var pairingAuthToken:String?
-    fileprivate var pairingConfig:PairingDeviceConfiguration?
+    fileprivate var pairingConfig:PairingDeviceConfiguration
     public var disableSSLValidation:Bool = false
     /// How often a ping is sent to the device server
     public var pingFrequency:Int?
@@ -35,26 +35,9 @@ public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration,
         CCLog.d("deinit WebSocketDeviceConfiguration")
     }
     
-    public init(endpoint:String) {
-        self.pairingConfig = self;
+    public init(endpoint:String, pairingConfig:PairingDeviceConfiguration) {
+        self.pairingConfig = pairingConfig;
     }
-    
-    
-
-
-
-    public func onPairingCode(pairingCode: String) {
-        // display pairingCode to user, to be entered on the Clover Mini
-    }
-
-    public func onPairingSuccess(authToken: String) {
-        // pairing is successful
-        // save this authToken to pass in to the config for future connections
-        // so pairing will happen automatically
-    }
-
-
-
 
     public func getTransport() -> CloverTransport? {
         let transport = WebSocketCloverTransport(endpointURL: endpoint, posName: posName, serialNumber: posSerialNumber, cloverDeviceConfig: self, pairingAuthToken: pairingAuthToken, pairingDeviceConfiguration: pairingConfig, disableSSLCertificateValidation: disableSSLValidation, pongTimeout: pongTimeout, pingFrequency: self.pingFrequency, reconnectDelay: reconnectTimer, reportConnectionProblemAfter: reportConnectionProblemTimeout);
