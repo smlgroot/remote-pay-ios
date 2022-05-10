@@ -35,7 +35,8 @@ public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration 
         CCLog.d("deinit WebSocketDeviceConfiguration")
     }
     
-    public init() {
+    public init(endpoint:String) {
+
     }
     
     public func getTransport() -> CloverTransport? {
