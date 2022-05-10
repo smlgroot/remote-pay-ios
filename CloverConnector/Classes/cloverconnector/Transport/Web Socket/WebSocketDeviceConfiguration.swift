@@ -35,17 +35,7 @@ public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration 
         CCLog.d("deinit WebSocketDeviceConfiguration")
     }
     
-    public init(endpoint:String, remoteApplicationID:String, posName:String, posSerial:String, pairingAuthToken:String?, pairingDeviceConfiguration:PairingDeviceConfiguration) {
-        self.endpoint = endpoint
-        self.remoteApplicationID = remoteApplicationID
-        self.posName = posName
-        self.posSerialNumber = posSerial
-        self.pairingAuthToken = pairingAuthToken
-        self.pairingConfig = pairingDeviceConfiguration
-        
-        if let version = Bundle.allFrameworks.filter({$0.bundleIdentifier != nil && $0.bundleIdentifier!.hasSuffix("CloverConnector")}).first?.infoDictionary?["CFBundleShortVersionString"] {
-            remoteSourceSDK = "com.cloverconnector.ios.ws:\(version)"
-        }
+    public init() {
     }
     
     public func getTransport() -> CloverTransport? {
