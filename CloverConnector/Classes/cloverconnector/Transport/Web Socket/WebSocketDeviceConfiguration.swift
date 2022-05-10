@@ -36,7 +36,6 @@ public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration 
     }
     
     public init(endpoint:String, pairingConfig:PairingDeviceConfiguration) {
-        print("TTTTTTTTTT");
         self.pairingConfig = pairingConfig;
     }
 
