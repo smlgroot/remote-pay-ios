@@ -9,12 +9,12 @@
 import Foundation
 
 public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration {
-    var endpoint:String
-    public var remoteApplicationID:String
-    public var posName:String
-    public var posSerialNumber:String
+    var endpoint:String = "XXXX";
+    public var remoteApplicationID:String = "";
+    public var posName:String = "";
+    public var posSerialNumber:String = "";
     public var pairingAuthToken:String?
-    fileprivate var pairingConfig:PairingDeviceConfiguration
+    fileprivate var pairingConfig:PairingDeviceConfiguration = nil;
     public var disableSSLValidation:Bool = false
     /// How often a ping is sent to the device server
     public var pingFrequency:Int?
