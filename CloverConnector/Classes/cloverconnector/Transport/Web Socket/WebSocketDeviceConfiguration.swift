@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration {
+public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration, PairingDeviceConfiguration {
     var endpoint:String = "XXXX";
     public var remoteApplicationID:String = "";
     public var posName:String = "";
@@ -36,9 +36,26 @@ public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration 
     }
     
     public init(endpoint:String) {
-        self.pairingConfig = nil;
+        self.pairingConfig = self;
     }
     
+    
+
+
+
+    func onPairingCode(pairingCode: String) {
+        // display pairingCode to user, to be entered on the Clover Mini
+    }
+
+    func onPairingSuccess(authToken: String) {
+        // pairing is successful
+        // save this authToken to pass in to the config for future connections
+        // so pairing will happen automatically
+    }
+
+
+
+
     public func getTransport() -> CloverTransport? {
         let transport = WebSocketCloverTransport(endpointURL: endpoint, posName: posName, serialNumber: posSerialNumber, cloverDeviceConfig: self, pairingAuthToken: pairingAuthToken, pairingDeviceConfiguration: pairingConfig, disableSSLCertificateValidation: disableSSLValidation, pongTimeout: pongTimeout, pingFrequency: self.pingFrequency, reconnectDelay: reconnectTimer, reportConnectionProblemAfter: reportConnectionProblemTimeout);
         return transport
