@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration, PairingDeviceConfiguration {
+public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration {
     var endpoint:String = "XXXX";
     public var remoteApplicationID:String = "";
     public var posName:String = "";
@@ -36,8 +36,7 @@ public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration,
     }
     
     public init(endpoint:String) {
-        super.init();
-        self.pairingConfig = self;
+        self.pairingConfig = PairingDeviceConfigurationImpl();
     }
 
     public func onPairingCode(_ pairingCode:String) {
