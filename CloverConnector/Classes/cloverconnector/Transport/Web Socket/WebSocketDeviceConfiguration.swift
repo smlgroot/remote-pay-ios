@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration {
+public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration, PairingDeviceConfiguration {
     var endpoint:String = "XXXX";
     public var remoteApplicationID:String = "";
     public var posName:String = "";
@@ -35,8 +35,16 @@ public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration 
         CCLog.d("deinit WebSocketDeviceConfiguration")
     }
     
-    public init(endpoint:String, pairingConfig:PairingDeviceConfiguration) {
-        self.pairingConfig = pairingConfig;
+    public init(endpoint:String) {
+        self.pairingConfig = self;
+    }
+
+    public func onPairingCode(_ pairingCode:String) {
+
+    }
+
+    public func onPairingSuccess(_ authToken:String) {
+        
     }
 
     public func getTransport() -> CloverTransport? {
