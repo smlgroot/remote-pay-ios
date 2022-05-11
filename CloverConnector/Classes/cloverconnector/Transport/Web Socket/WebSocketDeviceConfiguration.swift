@@ -35,7 +35,7 @@ public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration 
         CCLog.d("deinit WebSocketDeviceConfiguration")
     }
     
-    public init(endpoint:String) {
+    public init() {
         self.pairingConfig = PairingDeviceConfigurationImpl();
     }
 
