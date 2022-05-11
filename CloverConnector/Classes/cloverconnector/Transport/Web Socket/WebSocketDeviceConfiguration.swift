@@ -14,7 +14,7 @@ public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration 
     public var posName:String = "";
     public var posSerialNumber:String = "";
     public var pairingAuthToken:String?
-    fileprivate var pairingConfig:PairingDeviceConfigurationImpl();
+    fileprivate var pairingConfig:PairingDeviceConfiguration = PairingDeviceConfigurationImpl();
     public var disableSSLValidation:Bool = false
     /// How often a ping is sent to the device server
     public var pingFrequency:Int?
