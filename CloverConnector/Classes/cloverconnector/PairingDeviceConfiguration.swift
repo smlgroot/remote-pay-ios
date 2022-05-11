@@ -9,6 +9,6 @@
 import Foundation
 
 public protocol PairingDeviceConfiguration {
-    func onPairingCode(_ pairingCode:String)
-    func onPairingSuccess(_ authToken:String)
+    func onPairingCode(pairingCode:String)
+    func onPairingSuccess(authToken:String)
 }
