@@ -9,12 +9,12 @@
 import Foundation
 
 public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration {
-    var endpoint:String = "XXXX";
-    public var remoteApplicationID:String = "";
-    public var posName:String = "";
-    public var posSerialNumber:String = "";
+    var endpoint:String
+    public var remoteApplicationID:String
+    public var posName:String
+    public var posSerialNumber:String
     public var pairingAuthToken:String?
-    fileprivate var pairingConfig:PairingDeviceConfiguration = PairingDeviceConfigurationImpl();
+    fileprivate var pairingConfig:PairingDeviceConfiguration
     public var disableSSLValidation:Bool = false
     /// How often a ping is sent to the device server
     public var pingFrequency:Int?
@@ -35,14 +35,19 @@ public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration 
         CCLog.d("deinit WebSocketDeviceConfiguration")
     }
     
-    public func onPairingCode(_ pairingCode:String) {
-
+    public init(endpoint:String, remoteApplicationID:String, posName:String, posSerial:String, pairingAuthToken:String?, pairingDeviceConfiguration:PairingDeviceConfiguration) {
+        self.endpoint = endpoint
+        self.remoteApplicationID = remoteApplicationID
+        self.posName = posName
+        self.posSerialNumber = posSerial
+        self.pairingAuthToken = pairingAuthToken
+        self.pairingConfig = pairingDeviceConfiguration
+        
+        if let version = Bundle.allFrameworks.filter({$0.bundleIdentifier != nil && $0.bundleIdentifier!.hasSuffix("CloverConnector")}).first?.infoDictionary?["CFBundleShortVersionString"] {
+            remoteSourceSDK = "com.cloverconnector.ios.ws:\(version)"
+        }
     }
-
-    public func onPairingSuccess(_ authToken:String) {
-
-    }
-
+    
     public func getTransport() -> CloverTransport? {
         let transport = WebSocketCloverTransport(endpointURL: endpoint, posName: posName, serialNumber: posSerialNumber, cloverDeviceConfig: self, pairingAuthToken: pairingAuthToken, pairingDeviceConfiguration: pairingConfig, disableSSLCertificateValidation: disableSSLValidation, pongTimeout: pongTimeout, pingFrequency: self.pingFrequency, reconnectDelay: reconnectTimer, reportConnectionProblemAfter: reportConnectionProblemTimeout);
         return transport
