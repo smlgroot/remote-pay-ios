@@ -14,7 +14,7 @@ public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration 
     public var posName:String = "";
     public var posSerialNumber:String = "";
     public var pairingAuthToken:String?
-    fileprivate var pairingConfig:PairingDeviceConfiguration
+    fileprivate var pairingConfig:PairingDeviceConfigurationImpl();
     public var disableSSLValidation:Bool = false
     /// How often a ping is sent to the device server
     public var pingFrequency:Int?
@@ -35,10 +35,6 @@ public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration 
         CCLog.d("deinit WebSocketDeviceConfiguration")
     }
     
-    public init() {
-        self.pairingConfig = PairingDeviceConfigurationImpl();
-    }
-
     public func onPairingCode(_ pairingCode:String) {
 
     }
