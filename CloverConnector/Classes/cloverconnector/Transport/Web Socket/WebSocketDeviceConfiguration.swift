@@ -36,6 +36,7 @@ public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration,
     }
     
     public init(endpoint:String) {
+        super.init();
         self.pairingConfig = self;
     }
 
@@ -44,7 +45,7 @@ public class WebSocketDeviceConfiguration : NSObject, CloverDeviceConfiguration,
     }
 
     public func onPairingSuccess(_ authToken:String) {
-        
+
     }
 
     public func getTransport() -> CloverTransport? {
